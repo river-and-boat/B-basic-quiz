@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 import java.time.Instant;
@@ -71,6 +72,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResult> requestParameterException(MissingServletRequestParameterException ex) {
         String parameterName = ex.getParameterName();
         String message = parameterName + "是必填项";
+        ErrorResult errorResult = getErrorResult(HttpStatus.BAD_REQUEST.value(),
+                ExceptionEnum.REQUEST_PARAMETER_NOT_MATCH.getError(),
+                message,
+                Instant.now());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorResult> requestParameterNotMatch(MethodArgumentTypeMismatchException ex) {
+        String parameterName = ex.getParameter().getParameterName();
+        String message = parameterName + "类型不匹配";
         ErrorResult errorResult = getErrorResult(HttpStatus.BAD_REQUEST.value(),
                 ExceptionEnum.REQUEST_PARAMETER_NOT_MATCH.getError(),
                 message,

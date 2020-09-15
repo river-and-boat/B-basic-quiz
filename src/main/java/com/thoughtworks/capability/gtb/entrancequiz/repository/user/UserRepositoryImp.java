@@ -18,7 +18,7 @@ public class UserRepositoryImp implements UserRepository {
     private static List<UserEntity> users;
     private static AtomicLong atomicId;
 
-    private static final Long ID_INITIAL_VALUE = 0L;
+    private static final Long ID_INITIAL_VALUE = 1L;
 
     static {
         users = Collections.synchronizedList(new LinkedList<UserEntity>() {

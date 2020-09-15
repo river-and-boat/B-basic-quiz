@@ -31,5 +31,6 @@ public class User {
     private String avatar;
 
     @Size(max = 1024)
-    private String description;
+    @Builder.Default
+    private String description = "";
 }
