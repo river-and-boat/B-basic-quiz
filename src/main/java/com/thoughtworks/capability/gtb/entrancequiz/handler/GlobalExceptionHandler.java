@@ -94,6 +94,6 @@ public class GlobalExceptionHandler {
                                        String message, Instant date) {
         return ErrorResult.builder()
                 .status(status).error(error)
-                .date(date).message(message).build();
+                .timestamp(date).message(message).build();
     }
 }

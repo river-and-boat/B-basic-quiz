@@ -14,5 +14,5 @@ public class ErrorResult {
     private Integer status;
     private String error;
     private String message;
-    private Instant date;
+    private Instant timestamp;
 }
