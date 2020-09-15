@@ -1,7 +1,9 @@
 package com.thoughtworks.capability.gtb.entrancequiz.handler;
 
 import com.thoughtworks.capability.gtb.entrancequiz.common.model.ErrorResult;
+import com.thoughtworks.capability.gtb.entrancequiz.exception.EducationException;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.ExceptionEnum;
+import com.thoughtworks.capability.gtb.entrancequiz.exception.UserAddException;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.UserNotExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,31 @@ import java.time.Instant;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserNotExistException.class)
-    public ResponseEntity studentException(UserNotExistException studentException) {
+    @ExceptionHandler(EducationException.class)
+    public ResponseEntity EducationException(EducationException educationException) {
         ErrorResult errorResult = getErrorResult(HttpStatus.NOT_FOUND.value(),
-                studentException.getExceptionEnum().getError(),
-                studentException.getExceptionEnum().getMessage(),
+                educationException.getExceptionEnum().getError(),
+                educationException.getExceptionEnum().getMessage(),
+                Instant.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(errorResult);
+    }
+
+    @ExceptionHandler(UserAddException.class)
+    public ResponseEntity studentAddException(UserAddException userAddException) {
+        ErrorResult errorResult = getErrorResult(HttpStatus.NOT_FOUND.value(),
+                userAddException.getExceptionEnum().getError(),
+                userAddException.getExceptionEnum().getMessage(),
+                Instant.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(errorResult);
+    }
+
+    @ExceptionHandler(UserNotExistException.class)
+    public ResponseEntity studentNotExistException(UserNotExistException userNotExistException) {
+        ErrorResult errorResult = getErrorResult(HttpStatus.NOT_FOUND.value(),
+                userNotExistException.getExceptionEnum().getError(),
+                userNotExistException.getExceptionEnum().getMessage(),
                 Instant.now());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(errorResult);
@@ -51,7 +73,7 @@ public class GlobalExceptionHandler {
         String message = parameterName + "是必填项";
         ErrorResult errorResult = getErrorResult(HttpStatus.BAD_REQUEST.value(),
                 ExceptionEnum.REQUEST_PARAMETER_NOT_MATCH.getError(),
-                ExceptionEnum.REQUEST_PARAMETER_NOT_MATCH.getMessage(),
+                message,
                 Instant.now());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }

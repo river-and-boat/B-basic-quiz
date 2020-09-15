@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.entrancequiz.repository.user;
 
 import com.thoughtworks.capability.gtb.entrancequiz.entity.UserEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.ExceptionEnum;
+import com.thoughtworks.capability.gtb.entrancequiz.exception.UserAddException;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.UserNotExistException;
 import org.springframework.stereotype.Repository;
 
@@ -48,7 +49,13 @@ public class UserRepositoryImp implements UserRepository {
             users.add(user);
             return user;
         } catch (Exception ex) {
-            throw new UserNotExistException(ExceptionEnum.ADD_USER_EXCEPTION);
+            throw new UserAddException(ExceptionEnum.ADD_USER_EXCEPTION);
         }
+    }
+
+    @Override
+    public boolean existUser(Long userId) {
+        return users.stream()
+                .anyMatch(u -> u.getId().equals(userId));
     }
 }

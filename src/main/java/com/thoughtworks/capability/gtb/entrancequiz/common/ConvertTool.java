@@ -1,6 +1,8 @@
 package com.thoughtworks.capability.gtb.entrancequiz.common;
 
+import com.thoughtworks.capability.gtb.entrancequiz.domain.Education;
 import com.thoughtworks.capability.gtb.entrancequiz.domain.User;
+import com.thoughtworks.capability.gtb.entrancequiz.entity.EducationEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.UserEntity;
 
 public class ConvertTool {
@@ -16,5 +18,17 @@ public class ConvertTool {
                 .id(userEntity.getId()).age(userEntity.getAge())
                 .avatar(userEntity.getAvatar()).description(userEntity.getDescription())
                 .name(userEntity.getName()).build();
+    }
+
+    public static Education convertEducationEntityToEducation(EducationEntity educationEntity) {
+        return Education.builder().title(educationEntity.getTitle())
+                .year(educationEntity.getYear()).userId(educationEntity.getUserId())
+                .description(educationEntity.getDescription()).build();
+    }
+
+    public static EducationEntity convertEducationToEducationEntity(Education education) {
+        return EducationEntity.builder().title(education.getTitle())
+                .year(education.getYear()).userId(education.getUserId())
+                .description(education.getDescription()).build();
     }
 }

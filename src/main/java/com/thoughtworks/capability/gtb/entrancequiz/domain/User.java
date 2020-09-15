@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @NotEmpty
-    @Size(min = 1, max = 64)
+    @Size(min = 1, max = 128)
     private String name;
 
     @NotNull
@@ -27,9 +27,9 @@ public class User {
     private Long age;
 
     @NotEmpty
-    @Size(min = 4, max = 256)
+    @Size(min = 8, max = 512)
     private String avatar;
 
-    @Size(max = 512)
+    @Size(max = 1024)
     private String description;
 }
