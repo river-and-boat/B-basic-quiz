@@ -12,8 +12,6 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @Builder
 public class Education {
-    private static final String YEAR_PATTERN = "\\d{4}";
-
     private Long userId;
     @NotNull
     @Min(1900)

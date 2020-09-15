@@ -8,4 +8,5 @@
 8. 增加新增和查询个人教育经历的Service测试
 9. 完成第二个功能(获取教育经历)前后端的联调
 10. 加入前端测试
-11. 加入后端Controller层的集成测试(主要验证一些特殊情况，看valid和validated有没有正常工作)
+11. 加入后端UserController层的集成测试(主要验证一些特殊情况，看valid和validated有没有正常工作)
+12. 加入后端EducationController层的集成测试(主要验证一些特殊情况，看valid和validated有没有正常工作)

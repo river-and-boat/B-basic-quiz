@@ -26,10 +26,13 @@ public class EducationService {
     }
 
     public List<Education> getEducationByUserId(Long userId) {
-        List<EducationEntity> educations = educationRepository.getEducationsByUserId(userId);
-        return educations.stream()
-                .map(ConvertTool::convertEducationEntityToEducation)
-                .collect(Collectors.toList());
+        if (userRepository.existUser(userId)) {
+            List<EducationEntity> educations = educationRepository.getEducationsByUserId(userId);
+            return educations.stream()
+                    .map(ConvertTool::convertEducationEntityToEducation)
+                    .collect(Collectors.toList());
+        }
+        throw new UserNotExistException(ExceptionEnum.USER_NOT_EXIST);
     }
 
     public Education saveEducation(Education education) {
