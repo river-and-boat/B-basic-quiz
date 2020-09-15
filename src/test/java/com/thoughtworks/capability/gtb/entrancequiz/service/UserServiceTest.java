@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.entrancequiz.service;
 
 import com.thoughtworks.capability.gtb.entrancequiz.domain.User;
-import com.thoughtworks.capability.gtb.entrancequiz.exception.UserException;
+import com.thoughtworks.capability.gtb.entrancequiz.exception.UserNotExistException;
 import com.thoughtworks.capability.gtb.entrancequiz.repository.user.UserRepositoryImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,10 +56,10 @@ class UserServiceTest {
 
     @Test
     public void testGetUserByIdWhenUserNotExist() {
-        UserException userException = assertThrows(UserException.class,
+        UserNotExistException userNotExistException = assertThrows(UserNotExistException.class,
                 () -> userService.getUserById(1L),
                 "Expected doThing() to throw, but it didn't");
         assertEquals("user is not exist",
-                userException.getExceptionEnum().getErrorMessage());
+                userNotExistException.getExceptionEnum().getMessage());
     }
 }

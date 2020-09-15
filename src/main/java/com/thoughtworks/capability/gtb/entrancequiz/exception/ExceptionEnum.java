@@ -2,23 +2,24 @@ package com.thoughtworks.capability.gtb.entrancequiz.exception;
 
 public enum  ExceptionEnum {
 
-    USER_NOT_EXIST(10001, "user is not exist"),
-    ADD_USER_EXCEPTION(10002, "add user failed");
+    USER_NOT_EXIST("NOT FOUND","user is not exist"),
+    ADD_USER_EXCEPTION("SERVER ERROR", "add user failed"),
+    REQUEST_PARAMETER_NOT_MATCH("CLIENT ERROR", "the parameters are not match the rule");
 
-    private Integer code;
-    private String errorMessage;
+    private String error;
+    private String message;
 
-    ExceptionEnum(Integer code, String errorMessage) {
-        this.code = code;
-        this.errorMessage = errorMessage;
+
+    ExceptionEnum(String error, String message) {
+        this.error = error;
+        this.message = message;
     }
 
-    public Integer getCode() {
-        return code;
+    public String getError() {
+        return error;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
-
 }
