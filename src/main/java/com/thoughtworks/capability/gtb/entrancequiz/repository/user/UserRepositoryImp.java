@@ -6,6 +6,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.exception.UserAddException;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.UserNotExistException;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,16 @@ public class UserRepositoryImp implements UserRepository {
     private static final Long ID_INITIAL_VALUE = 0L;
 
     static {
-        users = new LinkedList<>();
+        users = Collections.synchronizedList(new LinkedList<UserEntity>() {
+            {
+                add(UserEntity.builder().id(1L)
+                        .name("KAMIL")
+                        .age(24L)
+                        .avatar("https://inews.gtimg.com/newsapp_match/0/3581582328/0")
+                        .description("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, non, dolorem, cumque distinctio magni quam expedita velit laborum sunt amet facere tempora ut fuga aliquam ad asperiores voluptatem dolorum! Quasi.")
+                        .build());
+            }
+        });
         atomicId = new AtomicLong(ID_INITIAL_VALUE);
     }
 
