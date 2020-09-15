@@ -17,11 +17,18 @@ public class UserRepositoryImp implements UserRepository {
     private static AtomicLong atomicId;
 
     private static final Long ID_INITIAL_VALUE = 0L;
-    private static final Long ID_INCREASING_VALUE = 1L;
 
     static {
         users = new LinkedList<>();
         atomicId = new AtomicLong(ID_INITIAL_VALUE);
+    }
+
+    public static List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public static AtomicLong getAtomicId() {
+        return atomicId;
     }
 
     @Override
@@ -36,7 +43,7 @@ public class UserRepositoryImp implements UserRepository {
 
     @Override
     public UserEntity saveUser(UserEntity user) {
-        user.setId(atomicId.addAndGet(ID_INCREASING_VALUE));
+        user.setId(atomicId.incrementAndGet());
         try {
             users.add(user);
             return user;
