@@ -28,9 +28,11 @@ public class EducationController {
         return educationService.getEducationByUserId(id);
     }
 
-    @PostMapping
+    @PostMapping("/users/{id}/educations")
     @ResponseStatus(HttpStatus.CREATED)
-    public Education createEducation(@RequestBody @Valid Education education) {
+    public Education createEducation(@RequestBody @Valid Education education,
+                                     @PathVariable @Validated @Pattern(regexp = PATTERN_ID) Long id) {
+        education.setUserId(id);
         return educationService.saveEducation(education);
     }
 }
