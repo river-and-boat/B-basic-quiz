@@ -83,9 +83,12 @@ class EducationServiceTest {
     }
 
     @Test
-    public void testGetEducationWithNoneRecord() {
+    public void testGetEducationWithNoneUserRecord() {
         Long notExistUserId = 1L;
-        List<Education> educations = educationService.getEducationByUserId(notExistUserId);
-        assertEquals(0, educations.size());
+        UserNotExistException userNotExistException = assertThrows(UserNotExistException.class,
+                () -> educationService.getEducationByUserId(notExistUserId),
+                "Expected doThing() to throw, but it didn't");
+        assertEquals("user is not exist",
+                userNotExistException.getExceptionEnum().getMessage());
     }
 }
