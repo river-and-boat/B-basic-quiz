@@ -58,6 +58,7 @@ class EducationControllerTest {
         EducationRepositoryImp.getEducations().clear();
     }
 
+    // GTB: 一般测试命名用全小写下划线分割，我是说一般情况下
     @Test
     public void testGetEducationByUserIdWhenIdIsNotNumber() throws Exception {
         String userId = "errorId";

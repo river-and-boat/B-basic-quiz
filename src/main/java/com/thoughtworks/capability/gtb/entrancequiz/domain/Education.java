@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// GTB: - 这里的 Education 其实不属于 domain，是个 DTO
 public class Education {
     private Long userId;
     @NotNull

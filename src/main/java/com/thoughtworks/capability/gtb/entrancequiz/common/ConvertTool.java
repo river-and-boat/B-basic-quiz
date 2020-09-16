@@ -5,6 +5,7 @@ import com.thoughtworks.capability.gtb.entrancequiz.domain.User;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.EducationEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.UserEntity;
 
+// GTB: + 有单独的负责转换的工具类
 public class ConvertTool {
     public static UserEntity convertUserToUserEntity(User user) {
         return UserEntity.builder()

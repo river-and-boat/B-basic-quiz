@@ -15,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+// GTB: 这里可以不用@SpringBootTest 了，但测试相应的要做一点修改，UserService 依赖的 Repository 需要传入一个 mock 实现，看看 @InjectMocks
 @SpringBootTest
 class EducationServiceTest {
 
