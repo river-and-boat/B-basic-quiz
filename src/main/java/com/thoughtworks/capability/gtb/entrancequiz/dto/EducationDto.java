@@ -1,4 +1,4 @@
-package com.thoughtworks.capability.gtb.entrancequiz.domain;
+package com.thoughtworks.capability.gtb.entrancequiz.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @Builder
 // GTB: - 这里的 Education 其实不属于 domain，是个 DTO
-public class Education {
+public class EducationDto {
     private Long userId;
     @NotNull
     @Min(1900)

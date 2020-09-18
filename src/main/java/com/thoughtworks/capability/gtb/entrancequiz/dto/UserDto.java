@@ -1,4 +1,4 @@
-package com.thoughtworks.capability.gtb.entrancequiz.domain;
+package com.thoughtworks.capability.gtb.entrancequiz.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class UserDto {
 
     private Long id;
 

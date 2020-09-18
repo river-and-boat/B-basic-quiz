@@ -1,6 +1,6 @@
 package com.thoughtworks.capability.gtb.entrancequiz.controller;
 
-import com.thoughtworks.capability.gtb.entrancequiz.domain.Education;
+import com.thoughtworks.capability.gtb.entrancequiz.dto.EducationDto;
 import com.thoughtworks.capability.gtb.entrancequiz.service.EducationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +19,15 @@ public class EducationController {
 
     @GetMapping("/users/{id}/educations")
     @ResponseStatus(HttpStatus.OK)
-    public List<Education> getEducationByUserId(@PathVariable Long id) {
+    public List<EducationDto> getEducationByUserId(@PathVariable Long id) {
         return educationService.getEducationByUserId(id);
     }
 
     @PostMapping("/users/{id}/educations")
     @ResponseStatus(HttpStatus.CREATED)
-    public Education createEducation(@RequestBody @Valid Education education,
-                                     @PathVariable Long id) {
-        education.setUserId(id);
-        return educationService.saveEducation(education);
+    public EducationDto createEducation(@RequestBody @Valid EducationDto educationDto,
+                                        @PathVariable Long id) {
+        educationDto.setUserId(id);
+        return educationService.saveEducation(educationDto);
     }
 }

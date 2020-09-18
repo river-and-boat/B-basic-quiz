@@ -53,7 +53,7 @@ $ curl localhost:8080/users/1
 
 #### ENDPOINT
 
-GET /users/:id/educations
+GET /users/:id/educationDtos
 
 #### REQUEST
 
@@ -73,7 +73,7 @@ GET /users/:id/educations
 #### EXAMPLE
 
 ```shell
-$ curl localhost:8080/users/1/educations
+$ curl localhost:8080/users/1/educationDtos
 [
    {
       "description" : "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam quis voluptatibus.",
@@ -109,23 +109,23 @@ POST /users
 
 #### RESPONSE
 
-除对应的 HTTP Status Code 外，还需要返回系统为新创建的 user 生成的 ID。
+除对应的 HTTP Status Code 外，还需要返回系统为新创建的 userDto 生成的 ID。
 
 注：如需按照 RESTful API 实现，无需受上一句要求限制，请自行按 RESTful API 要求实现即可。
 
 #### EXAMPLE
 
 ```shell
-$ cat user.json
+$ cat userDto.json
 {
     "name": "Panda",
     "age": 28,
     "avatar": "https://i.dlpng.com/static/png/6681915_preview.png",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
 }
-$ curl -H "Content-Type: application/json" --data @user.json localhost:8080/users
+$ curl -H "Content-Type: application/json" --data @userDto.json localhost:8080/users
 10
-$ curl -v -H "Content-Type: application/json" --data @user.json localhost:8080/users
+$ curl -v -H "Content-Type: application/json" --data @userDto.json localhost:8080/users
 *   Trying ::1...
 * TCP_NODELAY set
 * Connected to localhost (::1) port 8080 (#0)
@@ -150,7 +150,7 @@ $ curl -v -H "Content-Type: application/json" --data @user.json localhost:8080/u
 
 #### ENDPOINT
 
-POST /users/:user_id/educations
+POST /users/:user_id/educationDtos
 
 #### REQUEST
 
@@ -171,18 +171,18 @@ POST /users/:user_id/educations
 #### EXAMPLE
 
 ```shell
-$ cat education.json
+$ cat educationDto.json
 {
     "description" : "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam quis voluptatibus.",
     "year" : "2005",
     "title" : "Secondary school specializing in artistic",
     "userId" : 1
 }
-$ curl -v -H "Content-Type: application/json" --data @education.json localhost:8080/users/1/educations
+$ curl -v -H "Content-Type: application/json" --data @educationDto.json localhost:8080/users/1/educationDtos
 *   Trying ::1...
 * TCP_NODELAY set
 * Connected to localhost (::1) port 8080 (#0)
-> POST /users/1/educations HTTP/1.1
+> POST /users/1/educationDtos HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
@@ -242,7 +242,7 @@ curl -v localhost:8080/users/666
    "timestamp" : "2020-06-17T05:04:07.641+00:00",
    "error" : "Not Found",
    "status" : 404,
-   "message" : "Cannot find basic info for user with id 666."
+   "message" : "Cannot find basic info for userDto with id 666."
 }
 ```
 
