@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.entrancequiz.service;
 
 import com.thoughtworks.capability.gtb.entrancequiz.common.ConvertTool;
-import com.thoughtworks.capability.gtb.entrancequiz.dto.EducationDto;
+import com.thoughtworks.capability.gtb.entrancequiz.dto.EducationDTO;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.EducationEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.UserEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.exception.ExceptionEnum;
@@ -27,24 +27,24 @@ public class EducationService {
         this.userRepository = userRepository;
     }
 
-    public List<EducationDto> getEducationByUserId(Long userId) {
+    public List<EducationDTO> getEducationByUserId(Long userId) {
         if (userRepository.existsById(userId)) {
             List<EducationEntity> educations = educationRepository.findAllByUserId(userId);
             return educations.stream()
-                    .map(e -> ConvertTool.convert(e, EducationDto.class))
+                    .map(e -> ConvertTool.convert(e, EducationDTO.class))
                     .collect(Collectors.toList());
         }
         throw new UserNotExistException(ExceptionEnum.USER_NOT_EXIST);
     }
 
-    public EducationDto saveEducation(Long userid, EducationDto educationDto) {
+    public EducationDTO saveEducation(Long userid, EducationDTO educationDto) {
         Optional<UserEntity> user = userRepository.findById(userid);
         if (user.isPresent()) {
             EducationEntity educationEntity = ConvertTool
                     .convert(educationDto, EducationEntity.class);
             educationEntity.setUser(user.get());
             EducationEntity savedEducation = educationRepository.save(educationEntity);
-            return ConvertTool.convert(savedEducation, EducationDto.class);
+            return ConvertTool.convert(savedEducation, EducationDTO.class);
         }
         throw new UserNotExistException(ExceptionEnum.USER_NOT_EXIST);
     }

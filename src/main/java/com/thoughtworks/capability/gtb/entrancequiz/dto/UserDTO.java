@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class UserDTO {
 
     private Long id;
 
@@ -35,5 +35,5 @@ public class UserDto {
     @Builder.Default
     private String description = "";
 
-    private List<EducationDto> educations;
+    private List<EducationDTO> educations;
 }

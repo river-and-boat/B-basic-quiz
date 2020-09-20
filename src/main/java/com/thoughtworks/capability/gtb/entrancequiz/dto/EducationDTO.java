@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @Builder
 // GTB: - 这里的 Education 其实不属于 domain，是个 DTO
-public class EducationDto {
+public class EducationDTO {
     @NotNull
     @Min(1900)
     @Max(2020)
@@ -25,5 +25,5 @@ public class EducationDto {
     @Size(min = 1, max = 4096)
     private String description;
     @JsonIgnore
-    private UserDto user;
+    private UserDTO user;
 }

@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.entrancequiz.service;
 
 import com.thoughtworks.capability.gtb.entrancequiz.common.ConvertTool;
-import com.thoughtworks.capability.gtb.entrancequiz.dto.UserDto;
+import com.thoughtworks.capability.gtb.entrancequiz.dto.UserDTO;
 import com.thoughtworks.capability.gtb.entrancequiz.entity.UserEntity;
 import com.thoughtworks.capability.gtb.entrancequiz.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto getUserById(Long id) {
+    public UserDTO getUserById(Long id) {
         UserEntity userEntity = userRepository.findById(id).get();
-        return ConvertTool.convert(userEntity, UserDto.class);
+        return ConvertTool.convert(userEntity, UserDTO.class);
     }
 
-    public UserDto saveUser(UserDto userDto) {
+    public UserDTO saveUser(UserDTO userDto) {
         UserEntity userEntity = ConvertTool.convert(userDto, UserEntity.class);
         UserEntity savedUserEntity = userRepository.save(userEntity);
-        return ConvertTool.convert(savedUserEntity, UserDto.class);
+        return ConvertTool.convert(savedUserEntity, UserDTO.class);
     }
 }
