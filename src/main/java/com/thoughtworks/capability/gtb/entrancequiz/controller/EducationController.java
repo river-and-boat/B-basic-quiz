@@ -27,7 +27,6 @@ public class EducationController {
     @ResponseStatus(HttpStatus.CREATED)
     public EducationDto createEducation(@RequestBody @Valid EducationDto educationDto,
                                         @PathVariable Long id) {
-        educationDto.setUserId(id);
-        return educationService.saveEducation(educationDto);
+        return educationService.saveEducation(id, educationDto);
     }
 }

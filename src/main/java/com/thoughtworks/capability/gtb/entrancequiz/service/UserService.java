@@ -16,13 +16,13 @@ public class UserService {
     }
 
     public UserDto getUserById(Long id) {
-        UserEntity userEntity = userRepository.getUserInfoById(id);
-        return ConvertTool.convertUserEntityToUser(userEntity);
+        UserEntity userEntity = userRepository.findById(id).get();
+        return ConvertTool.convert(userEntity, UserDto.class);
     }
 
     public UserDto saveUser(UserDto userDto) {
-        UserEntity userEntity = ConvertTool.convertUserToUserEntity(userDto);
-        UserEntity savedUserEntity = userRepository.saveUser(userEntity);
-        return ConvertTool.convertUserEntityToUser(savedUserEntity);
+        UserEntity userEntity = ConvertTool.convert(userDto, UserEntity.class);
+        UserEntity savedUserEntity = userRepository.save(userEntity);
+        return ConvertTool.convert(savedUserEntity, UserDto.class);
     }
 }

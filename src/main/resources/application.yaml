@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC
+    username: root
+    password: pass
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
