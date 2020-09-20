@@ -34,6 +34,4 @@ public class UserDTO {
     @Size(max = 1024)
     @Builder.Default
     private String description = "";
-
-    private List<EducationDTO> educations;
 }

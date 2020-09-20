@@ -24,6 +24,4 @@ public class EducationDTO {
     @NotEmpty
     @Size(min = 1, max = 4096)
     private String description;
-    @JsonIgnore
-    private UserDTO user;
 }
