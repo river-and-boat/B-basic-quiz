@@ -58,14 +58,12 @@ class UserControllerTest {
 
         @Test
         public void should_throw_error_when_param_not_match() throws Exception {
-            when(userService.getUserById(1L)).thenReturn(userDTO);
             mockMvc.perform(get("/users/{id}", "hello"))
                     .andExpect(status().isBadRequest())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                     .andExpect(jsonPath("$.status", is(400)))
                     .andExpect(jsonPath("$.error", is("CLIENT ERROR")))
                     .andExpect(jsonPath("$.message", is("id类型不匹配")));
-            verify(userService, times(0)).getUserById(1L);
         }
     }
 
